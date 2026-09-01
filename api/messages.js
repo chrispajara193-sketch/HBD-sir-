@@ -18,18 +18,11 @@ if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
 let memoryMessages = [
   {
     id: 1,
-    name: "Alex Rivera",
-    role: "Development Team",
-    message: "Happy Birthday, Boss! Thank you for always guiding us with patience and pushing us to reach our full potential. Have a fantastic day!",
+    name: "Chris Pajara",
+    role: "NGC Data Controller",
+    message: "Happy Birthday, Sir Nics! Thank you for always guiding us with patience and pushing us to reach our full potential!",
     createdAt: new Date().toISOString()
   },
-  {
-    id: 2,
-    name: "Sarah Jenkins",
-    role: "Marketing",
-    message: "Wishing you the happiest of birthdays! May this upcoming year bring you even more success, great health, and happiness.",
-    createdAt: new Date().toISOString()
-  }
 ];
 
 export default async function handler(req, res) {
