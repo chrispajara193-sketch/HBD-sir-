@@ -49,11 +49,8 @@ let memoryMessages = [
     name: "Tandang Sora sa Past Life :)",
     role: "Team Bats / Nars",
     message: "Happy Birthday, NICO! HAHAHA🎉🥳
-
 4 years na tayong magkasama sa work, and looking back, ang dami na rin nating pinagdaanan lalo na yung mga panahong parang mas madalas pa tayong magkaaway kaysa magkasundo. 😂 Pero who would’ve thought na after all those years, magiging okay at magkasundo rin tayo nang ganito?
-
 9 months na tayong okay, and I’m genuinely grateful for that. Sa mga panahong nakasama kita, hindi lang bilang Team Leader kundi bilang mentor ko rin sa maraming bagay, marami akong natutunan sa’yo hindi lang tungkol sa work, kundi pati na rin sa ibang aspects na nakatulong sa akin na mas matuto at maging better. And I’m genuinely thankful for that. Mas nakilala kita beyond being my Team Leader, and I appreciate the friendship, understanding, and good relationship we have now.
-
 Thank you for the guidance, patience, and for everything you do for the team. Wishing you good health, happiness, success, and more blessings in life.",
     createdAt: new Date().toISOString()
   },
@@ -104,9 +101,7 @@ Thank you for the guidance, patience, and for everything you do for the team. Wi
     name: "Gary Luis I. Cruz",
     role: "NGC Disease Surveillance Officer",
     message: "Happy Birthday Tinyente Nicolas Rex Dumlao!
-
 Maraming salamat sa pag gabay saamin! Sa pagiging Leader, Bossing at Kuya. More blessings to come and stay healthy!!
-
 Salute! 🫡",
     createdAt: new Date().toISOString()
   },
@@ -117,8 +112,7 @@ Salute! 🫡",
     message: "Happy Birthday Sir Niks <3
 - Complimenting your work ethics and dedications are just a common thing to say sa pagkatao mo.
 this time gusto ko naman masabi at magpasalamat kung gaano ka ka buting tao ser, matulungin, thoughtful sa lahat ng taong nakapalligid sayo, may mga tao man na nagagalit man sayo but still you want the best for them.
-
-Your leadership is not about being in charge, it is about taking care of those in your charge. labyu kuya/ser nix <3",
+our leadership is not about being in charge, it is about taking care of those in your charge. labyu kuya/ser nix <3",
     createdAt: new Date().toISOString()
   },
   {
