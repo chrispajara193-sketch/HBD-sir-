@@ -73,6 +73,13 @@
     .msg-count { background: rgba(255, 255, 255, 0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; }
     .messages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 
+    .msg-card p {
+     font-size: 0.9rem;
+     line-height: 1.5;
+     color: #e2e8f0;
+     margin: 8px 0 14px;
+     white-space: pre-line; /* preserves paragraph breaks */
+    }
     .msg-card {
       background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border);
       border-radius: 14px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;

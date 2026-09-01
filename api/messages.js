@@ -14,7 +14,7 @@ if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
   });
 }
 
-// Fixed memoryMessages with Backticks for multi-line support
+// Fixed memoryMessages with Backticks & Commas
 let memoryMessages = [
   {
     id: 1,
@@ -65,7 +65,7 @@ Thank you for the guidance, patience, and for everything you do for the team. Wi
     id: 7,
     name: "JEROME-ANG TAGAPINDOT",
     role: "DATA CONTROLLER",
-    message: "Blessed birthday sa aming pinuno!, mabuhay ka!! bang! bang! na... naniniwala ako sa kasabihan, \"Ang taong may tinatanaw na patutunguhan, may malinaw na pupuntahan.\"",
+    message: `Blessed birthday sa aming pinuno!, mabuhay ka!! bang! bang! na... naniniwala ako sa kasabihan, "Ang taong may tinatanaw na patutunguhan, may malinaw na pupuntahan."`,
     createdAt: new Date().toISOString()
   },
   {
@@ -161,25 +161,25 @@ our leadership is not about being in charge, it is about taking care of those in
     id: 21,
     name: "Joyce",
     role: "BHAHC Data Controller",
-    message: "Happy Birthday to one of the most incredible people I know! Im so grateful for all the unforgettable moments, endless laughs, and great conversations weve shared at work. I hope today brings you all the joy, love, and cake you deserve, and that this next year around the sun is your absolute best one yet—packed with big wins, amazing adventures, and everything that makes you happiest. Celebrate big today!"
+    message: "Happy Birthday to one of the most incredible people I know! Im so grateful for all the unforgettable moments, endless laughs, and great conversations weve shared at work. I hope today brings you all the joy, love, and cake you deserve, and that this next year around the sun is your absolute best one yet—packed with big wins, amazing adventures, and everything that makes you happiest. Celebrate big today!",
     createdAt: new Date().toISOString()
   },
   {
     id: 22,
     name: "Anjonette",
     role: "PAHC - DSO - Nurse",
-    message: 'Happy Birthday BossSerAmo. 
+    message: `Happy Birthday BossSerAmo. 
 It's been 6 years nung naging magkatrabaho tayo. Salamat sa support, guidance at pag intindi. 
-Nawa'y ipagpatuloy ang pagiging makatao, maka Diyos, at makabansa. Fair treatment at walang bias sa lahat. Mahabang buhay para saiyo at god bless!'
+Nawa'y ipagpatuloy ang pagiging makatao, maka Diyos, at makabansa. Fair treatment at walang bias sa lahat. Mahabang buhay para saiyo at god bless!`,
     createdAt: new Date().toISOString()
   },
   {
     id: 23,
     name: "Jem",
     role: "DSO - Nurse",
-    message: 'Happiest Birthday Boss Nics! Patikim ng handa! Haha
+    message: `Happiest Birthday Boss Nics! Patikim ng handa! Haha
 Thankyou po sa pagwelcome sa D2 kahit sa D5 ako naka assign! 😂🤍
-Godbless you po'
+Godbless you po`,
     createdAt: new Date().toISOString()
   }
 ];
