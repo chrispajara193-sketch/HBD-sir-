@@ -93,7 +93,7 @@ Thank you for the guidance, patience, and for everything you do for the team. Wi
     id: 12,
     name: "Tin",
     role: "DSO-NURSE",
-    message: "Happiest birthday sir nics thank you sa mahabaaaaaaaaaaaaaaaaaaaang pasesnsya na ibinigay mo sa aming mga nurses God bless po and more blessings to come",
+    message: "Happiest birthday sir nics thank you sa mahabaaaaaaaaaaaang pasesnsya na ibinigay mo sa aming mga nurses God bless po and more blessings to come",
     createdAt: new Date().toISOString()
   },
   {
@@ -157,6 +157,12 @@ our leadership is not about being in charge, it is about taking care of those in
     message: "Happy Birthday sir nics sana maging masaya ka everyday and matupad na ang inaantay mong makasama na si maam manileth",
     createdAt: new Date().toISOString()
   },
+  {
+    id: 21,
+    name: "Joyce",
+    role: "BHAHC Data Controller",
+    message: "Happy Birthday to one of the most incredible people I know! Im so grateful for all the unforgettable moments, endless laughs, and great conversations weve shared at work. I hope today brings you all the joy, love, and cake you deserve, and that this next year around the sun is your absolute best one yet—packed with big wins, amazing adventures, and everything that makes you happiest. Celebrate big today!"
+  }
 ];
 
 export default async function handler(req, res) {
