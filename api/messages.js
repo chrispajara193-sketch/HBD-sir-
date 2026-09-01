@@ -182,6 +182,17 @@ Thankyou po sa pagwelcome sa D2 kahit sa D5 ako naka assign! 😂🤍
 Godbless you po`,
     createdAt: new Date().toISOString()
   }
+  {
+    id: 24,
+    name: "Boss Vin",
+    role: "DSO",
+    message: `Happy Birthday, Nicolas! 🎉🏀
+
+Workmate, ka-basketball, at higit sa lahat, tunay na kaibigan. Salamat sa mga tawanan, kwentuhan, at laban—inside and outside the court. Stay solid, stay humble, and keep shooting for your goals! 💪
+
+More blessings and more wins,big bro! Cheers! 🥂🎂`,
+    createdAt: new Date().toISOString()
+  }
 ];
 
 export default async function handler(req, res) {
