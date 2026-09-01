@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Boss!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --accent-gold: #f59e0b;
+      --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; overflow-x: hidden; }
+
+    #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    .hero { text-align: center; padding: 30px 0; }
+    .badge {
+      display: inline-block; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-gold);
+      color: var(--accent-gold); padding: 6px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 10px;
+      background: linear-gradient(to right, #ffffff, #fde68a, #f59e0b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+    .celebrant-card {
+      background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 30px; text-align: center; margin: 30px 0 40px;
+    }
+    .avatar-wrapper {
+      width: 100px; height: 100px; margin: 0 auto 15px; border-radius: 50%; padding: 3px; background: var(--accent-gradient);
+    }
+    .avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .celebrant-card h2 { font-size: 1.6rem; margin-bottom: 4px; }
+    .celebrant-card .title { color: var(--accent-gold); font-weight: 600; margin-bottom: 10px; font-size: 0.95rem; }
+    .celebrant-card .quote { font-style: italic; color: var(--text-muted); font-size: 0.9rem; }
+
+    .form-container {
+      background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 25px; margin-bottom: 40px;
+    }
+    .form-container h3 { font-size: 1.3rem; margin-bottom: 18px; }
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    @media (max-width: 600px) { .input-grid { grid-template-columns: 1fr; } }
+
+    input, textarea {
+      width: 100%; padding: 12px 16px; background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px;
+      color: #fff; font-size: 0.9rem; outline: none; transition: 0.3s;
+    }
+    input:focus, textarea:focus { border-color: var(--accent-gold); }
+    textarea { resize: vertical; min-height: 90px; margin-bottom: 16px; }
+
+    .btn-submit {
+      background: var(--accent-gradient); color: #0f172a; font-weight: 700; font-size: 0.95rem;
+      border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; transition: transform 0.2s;
+    }
+    .btn-submit:hover { transform: translateY(-2px); }
+
+    .wall-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .msg-count { background: rgba(255, 255, 255, 0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; }
+    .messages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+
+    .msg-card {
+      background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border);
+      border-radius: 14px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;
+      animation: popIn 0.3s ease-out;
+    }
+    .quote-icon { font-size: 1.6rem; color: var(--accent-gold); opacity: 0.8; line-height: 1; }
+    .msg-card p { font-size: 0.9rem; line-height: 1.5; color: #e2e8f0; margin: 8px 0 14px; }
+    .msg-footer { display: flex; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px; }
+    .msg-sender { font-weight: 600; color: var(--accent-gold); font-size: 0.85rem; }
+    .msg-dept { color: var(--text-muted); font-size: 0.75rem; }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="container">
+    <header class="hero">
+      <span class="badge">🌟 Team Celebration 🌟</span>
+      <h1>Happy Birthday, Supervisor!</h1>
+      <p>Thank you for your guidance, encouragement, and inspiring leadership!</p>
+    </header>
+
+    <section class="celebrant-card">
+      <div class="avatar-wrapper">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Supervisor" />
+      </div>
+      <h2>[Supervisor's Name]</h2>
+      <div class="title">Team Leader & Manager</div>
+      <p class="quote">"Great leaders don't set out to be a leader... they set out to make the difference."</p>
+    </section>
+
+    <section class="form-container">
+      <h3>✍️ Leave a Birthday Message</h3>
+      <form id="wishesForm">
+        <div class="input-grid">
+          <input type="text" id="senderName" placeholder="Your Name" required />
+          <input type="text" id="senderRole" placeholder="Your Team / Role (e.g. Design Team)" required />
+        </div>
+        <textarea id="messageText" placeholder="Write your heartfelt wishes here..." required></textarea>
+        <button type="submit" class="btn-submit" id="submitBtn">Send Message 🎉</button>
+      </form>
+    </section>
+
+    <section>
+      <div class="wall-header">
+        <h3>💌 Team Greetings Wall</h3>
+        <span class="msg-count" id="msgCount">Loading...</span>
+      </div>
+      <div class="messages-grid" id="messagesGrid"></div>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById('wishesForm');
+    const messagesGrid = document.getElementById('messagesGrid');
+    const msgCount = document.getElementById('msgCount');
+
+    async function loadMessages() {
+      try {
+        const res = await fetch('/api/messages');
+        const messages = await res.json();
+        messagesGrid.innerHTML = '';
+
+        messages.forEach(msg => renderMessageCard(msg, false));
+        msgCount.textContent = `${messages.length} Message${messages.length !== 1 ? 's' : ''}`;
+      } catch (err) {
+        console.error('Error fetching messages:', err);
+      }
+    }
+
+    function renderMessageCard(msg, prepend = true) {
+      const card = document.createElement('div');
+      card.className = 'msg-card';
+      card.innerHTML = `
+        <div>
+          <div class="quote-icon">“</div>
+          <p>${escapeHTML(msg.message)}</p>
+        </div>
+        <div class="msg-footer">
+          <span class="msg-sender">${escapeHTML(msg.name)}</span>
+          <span class="msg-dept">${escapeHTML(msg.role)}</span>
+        </div>
+      `;
+
+      if (prepend) messagesGrid.prepend(card);
+      else messagesGrid.appendChild(card);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      const payload = {
+        name: document.getElementById('senderName').value,
+        role: document.getElementById('senderRole').value,
+        message: document.getElementById('messageText').value
+      };
+
+      try {
+        const res = await fetch('/api/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          const newMsg = await res.json();
+          renderMessageCard(newMsg, true);
+          fireConfetti();
+          form.reset();
+
+          const count = messagesGrid.children.length;
+          msgCount.textContent = `${count} Message${count !== 1 ? 's' : ''}`;
+        }
+      } catch (err) {
+        alert('Could not submit message. Please try again.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Message 🎉';
+      }
+    });
+
+    function escapeHTML(str) {
+      const div = document.createElement('div');
+      div.innerText = str;
+      return div.innerHTML;
+    }
+
+    // Confetti Animation
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function fireConfetti() {
+      const colors = ['#f59e0b', '#fbbf24', '#38bdf8', '#818cf8', '#ec4899'];
+      for (let i = 0; i < 80; i++) {
+        particles.push({
+          x: canvas.width / 2, y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 16, vy: (Math.random() - 0.8) * 16,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360, rotSpeed: (Math.random() - 0.5) * 10,
+          opacity: 1, gravity: 0.35
+        });
+      }
+    }
+
+    function renderConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        p.x += p.vx; p.y += p.vy; p.vy += p.gravity;
+        p.rotation += p.rotSpeed; p.opacity -= 0.01;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+        if (p.opacity <= 0 || p.y > canvas.height) particles.splice(index, 1);
+      });
+      requestAnimationFrame(renderConfetti);
+    }
+    renderConfetti();
+    loadMessages();
+  </script>
+</body>
+</html>
