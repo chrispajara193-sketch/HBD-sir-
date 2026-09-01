@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday, Sir Nics!</title>
+  <title>Happy Birthday, Pinuno!</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
 
   <style>
@@ -71,24 +71,22 @@
 
     .wall-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .msg-count { background: rgba(255, 255, 255, 0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; }
-    .messages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .messages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 
+    .msg-card p {
+     font-size: 0.9rem;
+     line-height: 1.5;
+     color: #e2e8f0;
+     margin: 8px 0 14px;
+     white-space: pre-line; /* preserves paragraph breaks */
+    }
     .msg-card {
       background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border);
       border-radius: 14px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;
       animation: popIn 0.3s ease-out;
     }
     .quote-icon { font-size: 1.6rem; color: var(--accent-gold); opacity: 0.8; line-height: 1; }
-    
-    /* Pre-line formatting added here */
-    .msg-card p {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: #e2e8f0;
-      margin: 8px 0 14px;
-      white-space: pre-line; /* preserves paragraph breaks */
-    }
-
+    .msg-card p { font-size: 0.9rem; line-height: 1.5; color: #e2e8f0; margin: 8px 0 14px; }
     .msg-footer { display: flex; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 8px; }
     .msg-sender { font-weight: 600; color: var(--accent-gold); font-size: 0.85rem; }
     .msg-dept { color: var(--text-muted); font-size: 0.75rem; }
@@ -112,9 +110,9 @@
 
     <section class="celebrant-card">
       <div class="avatar-wrapper">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Supervisor" />
+        <img src="supervisor.jpg" alt="Supervisor" />
       </div>
-      <h2>Sir Nicolas Rex Dumlao</h2>
+      <h2>Nicolas Rex Dumlao</h2>
       <div class="title">Team Leader & Manager</div>
       <p class="quote">"Great leaders don't set out to be a leader... they set out to make the difference."</p>
     </section>
@@ -124,7 +122,7 @@
       <form id="wishesForm">
         <div class="input-grid">
           <input type="text" id="senderName" placeholder="Your Name" required />
-          <input type="text" id="senderRole" placeholder="Your Team / Role (e.g. DSO - Nurse)" required />
+          <input type="text" id="senderRole" placeholder="Your Team / Role (e.g. Design Team)" required />
         </div>
         <textarea id="messageText" placeholder="Write your heartfelt wishes here..." required></textarea>
         <button type="submit" class="btn-submit" id="submitBtn">Send Message 🎉</button>
@@ -155,7 +153,6 @@
         msgCount.textContent = `${messages.length} Message${messages.length !== 1 ? 's' : ''}`;
       } catch (err) {
         console.error('Error fetching messages:', err);
-        msgCount.textContent = 'Error loading messages';
       }
     }
 
