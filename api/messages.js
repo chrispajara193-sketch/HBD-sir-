@@ -175,8 +175,8 @@ Nawa'y ipagpatuloy ang pagiging makatao, maka Diyos, at makabansa. Fair treatmen
   },
   {
     id: 23,
-    name: "Jem",
-    role: "DSO - Nurse",
+    name: "Shiela",
+    role: "D5 - DSO - Nurse",
     message: `Happiest Birthday Boss Nics! Patikim ng handa! Haha
 Thankyou po sa pagwelcome sa D2 kahit sa D5 ako naka assign! 😂🤍
 Godbless you po`,
