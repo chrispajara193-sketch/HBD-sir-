@@ -181,7 +181,7 @@ Nawa'y ipagpatuloy ang pagiging makatao, maka Diyos, at makabansa. Fair treatmen
 Thankyou po sa pagwelcome sa D2 kahit sa D5 ako naka assign! 😂🤍
 Godbless you po`,
     createdAt: new Date().toISOString()
-  }
+  },
   {
     id: 24,
     name: "Boss Vin",
@@ -191,6 +191,13 @@ Godbless you po`,
 Workmate, ka-basketball, at higit sa lahat, tunay na kaibigan. Salamat sa mga tawanan, kwentuhan, at laban—inside and outside the court. Stay solid, stay humble, and keep shooting for your goals! 💪
 
 More blessings and more wins,big bro! Cheers! 🥂🎂`,
+    createdAt: new Date().toISOString()
+  }
+  {
+    id: 25,
+    name: "Lab",
+    role: "Admin Aide VI",
+    message: "Happy birthday si nics! Wish you a happy happy birthday.. Wish ko lahat ng dreams mo sa life matupad mo.. Stay what you are.. A humble and kind person.. Tatak d2 pusong d2 pa rin..",
     createdAt: new Date().toISOString()
   }
 ];
