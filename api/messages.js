@@ -192,7 +192,7 @@ Workmate, ka-basketball, at higit sa lahat, tunay na kaibigan. Salamat sa mga ta
 
 More blessings and more wins,big bro! Cheers! 🥂🎂`,
     createdAt: new Date().toISOString()
-  }
+  },
   {
     id: 25,
     name: "Lab",
