@@ -14,7 +14,7 @@ if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
   });
 }
 
-// In-memory fallback
+// Fixed memoryMessages with Backticks for multi-line support
 let memoryMessages = [
   {
     id: 1,
@@ -34,7 +34,7 @@ let memoryMessages = [
     id: 3,
     name: "Udjan",
     role: "DSO-Batasan Super",
-    message: "Happy Birthday!Wishing you continued success . I’m grateful to have you as.. Kawork at bilang isang kaibigan na nanlilibre tuwing kagipitan haha..at family na rin kasama sa mga gala.. Enjoy your special day! More camping adventure to us..",
+    message: `Happy Birthday!Wishing you continued success . I’m grateful to have you as.. Kawork at bilang isang kaibigan na nanlilibre tuwing kagipitan haha..at family na rin kasama sa mga gala.. Enjoy your special day! More camping adventure to us..`,
     createdAt: new Date().toISOString()
   },
   {
@@ -48,10 +48,10 @@ let memoryMessages = [
     id: 5,
     name: "Tandang Sora sa Past Life :)",
     role: "Team Bats / Nars",
-    message: "Happy Birthday, NICO! HAHAHA🎉🥳
+    message: `Happy Birthday, NICO! HAHAHA🎉🥳
 4 years na tayong magkasama sa work, and looking back, ang dami na rin nating pinagdaanan lalo na yung mga panahong parang mas madalas pa tayong magkaaway kaysa magkasundo. 😂 Pero who would’ve thought na after all those years, magiging okay at magkasundo rin tayo nang ganito?
 9 months na tayong okay, and I’m genuinely grateful for that. Sa mga panahong nakasama kita, hindi lang bilang Team Leader kundi bilang mentor ko rin sa maraming bagay, marami akong natutunan sa’yo hindi lang tungkol sa work, kundi pati na rin sa ibang aspects na nakatulong sa akin na mas matuto at maging better. And I’m genuinely thankful for that. Mas nakilala kita beyond being my Team Leader, and I appreciate the friendship, understanding, and good relationship we have now.
-Thank you for the guidance, patience, and for everything you do for the team. Wishing you good health, happiness, success, and more blessings in life.",
+Thank you for the guidance, patience, and for everything you do for the team. Wishing you good health, happiness, success, and more blessings in life.`,
     createdAt: new Date().toISOString()
   },
   {
@@ -65,7 +65,7 @@ Thank you for the guidance, patience, and for everything you do for the team. Wi
     id: 7,
     name: "JEROME-ANG TAGAPINDOT",
     role: "DATA CONTROLLER",
-    message: "Blessed birthday sa aming pinuno!, mabuhay ka!! bang! bang! na... naniniwala ako sa kasabihan, "Ang taong may tinatanaw na patutunguhan, may malinaw na pupuntahan."",
+    message: "Blessed birthday sa aming pinuno!, mabuhay ka!! bang! bang! na... naniniwala ako sa kasabihan, \"Ang taong may tinatanaw na patutunguhan, may malinaw na pupuntahan.\"",
     createdAt: new Date().toISOString()
   },
   {
@@ -100,19 +100,19 @@ Thank you for the guidance, patience, and for everything you do for the team. Wi
     id: 13,
     name: "Gary Luis I. Cruz",
     role: "NGC Disease Surveillance Officer",
-    message: "Happy Birthday Tinyente Nicolas Rex Dumlao!
+    message: `Happy Birthday Tinyente Nicolas Rex Dumlao!
 Maraming salamat sa pag gabay saamin! Sa pagiging Leader, Bossing at Kuya. More blessings to come and stay healthy!!
-Salute! 🫡",
+Salute! 🫡`,
     createdAt: new Date().toISOString()
   },
   {
     id: 14,
     name: "Chino Paco Sia",
     role: "Data Controller",
-    message: "Happy Birthday Sir Niks <3
+    message: `Happy Birthday Sir Niks <3
 - Complimenting your work ethics and dedications are just a common thing to say sa pagkatao mo.
 this time gusto ko naman masabi at magpasalamat kung gaano ka ka buting tao ser, matulungin, thoughtful sa lahat ng taong nakapalligid sayo, may mga tao man na nagagalit man sayo but still you want the best for them.
-our leadership is not about being in charge, it is about taking care of those in your charge. labyu kuya/ser nix <3",
+our leadership is not about being in charge, it is about taking care of those in your charge. labyu kuya/ser nix <3`,
     createdAt: new Date().toISOString()
   },
   {
@@ -126,7 +126,7 @@ our leadership is not about being in charge, it is about taking care of those in
     id: 16,
     name: "Mariel Gayoso",
     role: "VHC - Nurse",
-    message: "Happy Happy Happy Birthday Sir nicx! Mabuhay ka hanggat gusto mo. Just wanted to say thank you for being such a great supervisor, Hindi ko alam kung supervisor ba kita o isa ka lang stress sa buhay ko eme HAHAHA. Pero kidding aside, salamat sa guidance, patience, support, at sa pagiging present kahit ang kulit ko minsan (ay madalas pala). You're one of those people na kahi mukhang kalaban, alam kong nandiyan pa rin kapag kalingan, HAPPY BIRTHDAY!",
+    message: `Happy Happy Happy Birthday Sir nicx! Mabuhay ka hanggat gusto mo. Just wanted to say thank you for being such a great supervisor, Hindi ko alam kung supervisor ba kita o isa ka lang stress sa buhay ko eme HAHAHA. Pero kidding aside, salamat sa guidance, patience, support, at sa pagiging present kahit ang kulit ko minsan (ay madalas pala). You're one of those people na kahi mukhang kalaban, alam kong nandiyan pa rin kapag kalingan, HAPPY BIRTHDAY!`,
     createdAt: new Date().toISOString()
   },
   {
@@ -160,7 +160,6 @@ our leadership is not about being in charge, it is about taking care of those in
 ];
 
 export default async function handler(req, res) {
-  // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
@@ -170,7 +169,6 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // --- GET: Fetch all messages ---
   if (req.method === 'GET') {
     try {
       if (redis) {
@@ -183,14 +181,11 @@ export default async function handler(req, res) {
     }
   }
 
-  // --- POST: Save a new message ---
   if (req.method === 'POST') {
     const { name, role, message } = req.body;
-
     if (!name || !message) {
       return res.status(400).json({ error: 'Name and message are required.' });
     }
-
     const newMessage = {
       id: Date.now(),
       name: name.trim(),
@@ -198,11 +193,10 @@ export default async function handler(req, res) {
       message: message.trim(),
       createdAt: new Date().toISOString()
     };
-
     try {
       if (redis) {
         let currentMessages = (await redis.get('birthday_messages')) || memoryMessages;
-        currentMessages.unshift(newMessage); // Add to top
+        currentMessages.unshift(newMessage);
         await redis.set('birthday_messages', currentMessages);
       } else {
         memoryMessages.unshift(newMessage);
@@ -212,6 +206,5 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to save message' });
     }
   }
-
   return res.status(405).json({ error: 'Method not allowed' });
 }
